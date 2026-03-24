@@ -212,7 +212,7 @@ const Admin = () => {
                       return (
                       <tr key={p.product_id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                         <td style={{ padding: '1rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                          <img src={`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}${p.image_url}`} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px' }} alt="" />
+                          <img src={p.image_url?.startsWith('/uploads') ? `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}${p.image_url}` : p.image_url} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px' }} alt="" />
                           {p.name}
                         </td>
                         <td style={{ padding: '1rem' }}>₦{Number(p.price).toLocaleString()}</td>

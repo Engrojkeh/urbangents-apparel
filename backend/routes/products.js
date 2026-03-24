@@ -2,34 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
 const { protect, admin } = require('../middleware/authMiddleware');
-const multer = require('multer');
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
-
-// Multer Config for Image Uploads
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename(req, file, cb) {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  }
-});
-
-const upload = multer({
-  storage,
-  fileFilter: function (req, file, cb) {
-    const filetypes = /jpg|jpeg|png|webp/;
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = filetypes.test(file.mimetype);
-
-    if (extname && mimetype) {
-      return cb(null, true);
-    } else {
-      cb('Images only!');
-    }
-  }
-});
+const upload = require('../config/cloudinary');
 
 // @route   GET /api/products
 // @desc    Get all products
@@ -52,7 +25,7 @@ router.post('/', protect, admin, upload.single('image'), async (req, res) => {
     let image_url = '';
 
     if (req.file) {
-      image_url = `/uploads/${req.file.filename}`;
+      image_url = req.file.path;
     }
 
     const product_id = uuidv4();
