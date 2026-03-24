@@ -72,7 +72,6 @@ const Admin = () => {
       alert('Product uploaded successfully!');
       setName(''); setPrice(''); setStock(''); setSize(''); setImageFile(null);
       // Refresh products manually
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
       const prodRes = await axios.get(`${API_URL}/api/products`);
       setProducts(prodRes.data);
     } catch (err) {
