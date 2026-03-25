@@ -58,4 +58,34 @@ router.post('/', protect, admin, upload.single('image'), async (req, res) => {
   }
 });
 
+// @route   PUT /api/products/:id
+// @desc    Update a product
+// @access  Private/Admin
+router.put('/:id', protect, admin, async (req, res) => {
+  try {
+    const { name, description, price, stock_quantity, size, colors } = req.body;
+    await db.execute(
+      'UPDATE Products SET name = ?, description = ?, price = ?, stock_quantity = ?, size = ?, colors = ? WHERE product_id = ?',
+      [name, description || null, price, stock_quantity, size || null, colors || null, req.params.id]
+    );
+    res.json({ message: 'Product updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// @route   DELETE /api/products/:id
+// @desc    Delete a product
+// @access  Private/Admin
+router.delete('/:id', protect, admin, async (req, res) => {
+  try {
+    await db.execute('DELETE FROM Products WHERE product_id = ?', [req.params.id]);
+    res.json({ message: 'Product deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router;

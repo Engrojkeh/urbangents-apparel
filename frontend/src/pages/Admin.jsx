@@ -17,6 +17,7 @@ const Admin = () => {
   const [size, setSize] = useState('');
   const [colors, setColors] = useState('');
   const [imageFile, setImageFile] = useState(null);
+  const [editProduct, setEditProduct] = useState(null); // product being edited
 
   useEffect(() => {
     const fetchAdminData = async () => {
@@ -81,10 +82,45 @@ const Admin = () => {
     }
   };
 
+  const handleDeleteProduct = async (productId) => {
+    if (!window.confirm('Are you sure you want to permanently delete this product?')) return;
+    try {
+      const token = localStorage.getItem('token');
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await axios.delete(`${API_URL}/api/products/${productId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setProducts(prev => prev.filter(p => p.product_id !== productId));
+    } catch (err) {
+      alert('Failed to delete product.');
+    }
+  };
+
+  const handleEditSave = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('token');
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await axios.put(`${API_URL}/api/products/${editProduct.product_id}`, {
+        name: editProduct.name,
+        description: editProduct.description,
+        price: editProduct.price,
+        stock_quantity: editProduct.stock_quantity,
+        size: editProduct.size,
+        colors: editProduct.colors,
+      }, { headers: { Authorization: `Bearer ${token}` } });
+      setProducts(prev => prev.map(p => p.product_id === editProduct.product_id ? editProduct : p));
+      setEditProduct(null);
+    } catch (err) {
+      alert('Failed to update product.');
+    }
+  };
+
   const lowStockProducts = products.filter(p => p.stock_quantity > 0 && p.stock_quantity <= 5);
   const outOfStockProducts = products.filter(p => Number(p.stock_quantity) === 0);
 
   return (
+    <>
     <div className="container mt-2" style={{ paddingBottom: '4rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
         <h2 style={{ color: 'var(--accent-color)' }}>Admin Headquarters</h2>
@@ -200,6 +236,7 @@ const Admin = () => {
                       <th style={{ padding: '1rem', textAlign: 'left' }}>Price</th>
                       <th style={{ padding: '1rem', textAlign: 'left' }}>Stock Level</th>
                       <th style={{ padding: '1rem', textAlign: 'left' }}>Status</th>
+                      <th style={{ padding: '1rem', textAlign: 'left' }}>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -219,6 +256,12 @@ const Admin = () => {
                         <td style={{ padding: '1rem' }}>₦{Number(p.price).toLocaleString()}</td>
                         <td style={{ padding: '1rem', fontWeight: 'bold', color: statusColor }}>{stockVal} units</td>
                         <td style={{ padding: '1rem' }}><span style={{ backgroundColor: `${statusColor}22`, color: statusColor, padding: '0.25rem 0.75rem', borderRadius: '50px', fontSize: '0.8rem' }}>{statusText}</span></td>
+                        <td style={{ padding: '1rem' }}>
+                          <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button onClick={() => setEditProduct({ ...p })} style={{ padding: '0.35rem 0.85rem', borderRadius: '4px', backgroundColor: 'rgba(166,138,100,0.2)', color: 'var(--accent-color)', border: '1px solid var(--accent-color)', cursor: 'pointer', fontSize: '0.8rem' }}>✏️ Edit</button>
+                            <button onClick={() => handleDeleteProduct(p.product_id)} style={{ padding: '0.35rem 0.85rem', borderRadius: '4px', backgroundColor: 'rgba(220,53,69,0.15)', color: 'var(--danger)', border: '1px solid var(--danger)', cursor: 'pointer', fontSize: '0.8rem' }}>🗑️ Delete</button>
+                          </div>
+                        </td>
                       </tr>
                     )})}
                   </tbody>
@@ -271,6 +314,44 @@ const Admin = () => {
         )}
       </div>
     </div>
+
+    {/* Edit Product Modal */}
+    {editProduct && (
+      <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.75)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+        <div style={{ backgroundColor: 'var(--bg-secondary)', borderRadius: '12px', padding: '2rem', width: '100%', maxWidth: '500px', border: '1px solid rgba(166,138,100,0.3)' }}>
+          <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-color)' }}>Edit Product</h3>
+          <form onSubmit={handleEditSave} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Name</label>
+              <input value={editProduct.name} onChange={e => setEditProduct(p => ({ ...p, name: e.target.value }))} required style={{ width: '100%', padding: '0.65rem', borderRadius: '4px', border: '1px solid rgba(166,138,100,0.3)', backgroundColor: 'var(--bg-dark)', color: 'white' }} />
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Price (₦)</label>
+                <input type="number" value={editProduct.price} onChange={e => setEditProduct(p => ({ ...p, price: e.target.value }))} required style={{ width: '100%', padding: '0.65rem', borderRadius: '4px', border: '1px solid rgba(166,138,100,0.3)', backgroundColor: 'var(--bg-dark)', color: 'white' }} />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Stock Quantity</label>
+                <input type="number" value={editProduct.stock_quantity} onChange={e => setEditProduct(p => ({ ...p, stock_quantity: e.target.value }))} required style={{ width: '100%', padding: '0.65rem', borderRadius: '4px', border: '1px solid rgba(166,138,100,0.3)', backgroundColor: 'var(--bg-dark)', color: 'white' }} />
+              </div>
+            </div>
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Sizes (comma-separated)</label>
+              <input value={editProduct.size || ''} onChange={e => setEditProduct(p => ({ ...p, size: e.target.value }))} placeholder="e.g., S, M, L, XL" style={{ width: '100%', padding: '0.65rem', borderRadius: '4px', border: '1px solid rgba(166,138,100,0.3)', backgroundColor: 'var(--bg-dark)', color: 'white' }} />
+            </div>
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Colors (comma-separated)</label>
+              <input value={editProduct.colors || ''} onChange={e => setEditProduct(p => ({ ...p, colors: e.target.value }))} placeholder="e.g., Black, White, Red" style={{ width: '100%', padding: '0.65rem', borderRadius: '4px', border: '1px solid rgba(166,138,100,0.3)', backgroundColor: 'var(--bg-dark)', color: 'white' }} />
+            </div>
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+              <button type="submit" className="btn btn-primary" style={{ flex: 1 }}>Save Changes</button>
+              <button type="button" onClick={() => setEditProduct(null)} style={{ flex: 1, padding: '0.85rem', borderRadius: '4px', border: '1px solid rgba(166,138,100,0.4)', backgroundColor: 'transparent', color: 'var(--text-secondary)', cursor: 'pointer' }}>Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    )}
+    </>
   );
 };
 
