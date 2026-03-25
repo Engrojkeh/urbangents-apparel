@@ -15,6 +15,7 @@ const Admin = () => {
   const [price, setPrice] = useState('');
   const [stock, setStock] = useState('');
   const [size, setSize] = useState('');
+  const [colors, setColors] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
@@ -57,6 +58,7 @@ const Admin = () => {
     formData.append('price', price);
     formData.append('stock_quantity', stock);
     formData.append('size', size);
+    formData.append('colors', colors);
     formData.append('category', 'general');
     formData.append('image', imageFile);
 
@@ -70,7 +72,7 @@ const Admin = () => {
         }
       });
       alert('Product uploaded successfully!');
-      setName(''); setPrice(''); setStock(''); setSize(''); setImageFile(null);
+      setName(''); setPrice(''); setStock(''); setSize(''); setColors(''); setImageFile(null);
       // Refresh products manually
       const prodRes = await axios.get(`${API_URL}/api/products`);
       setProducts(prodRes.data);
@@ -247,6 +249,10 @@ const Admin = () => {
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Size Options (Optional)</label>
                 <input type="text" placeholder="e.g., S, M, L, XL" value={size} onChange={e => setSize(e.target.value)} style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid rgba(166,138,100,0.3)', backgroundColor: 'var(--bg-dark)', color: 'white' }} />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Available Colors (Optional)</label>
+                <input type="text" placeholder="e.g., Black, White, Red" value={colors} onChange={e => setColors(e.target.value)} style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid rgba(166,138,100,0.3)', backgroundColor: 'var(--bg-dark)', color: 'white' }} />
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Product Image</label>

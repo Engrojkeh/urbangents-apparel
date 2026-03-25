@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 // @access  Private/Admin
 router.post('/', protect, admin, upload.single('image'), async (req, res) => {
   try {
-    const { name, description, price, stock_quantity, category, size } = req.body;
+    const { name, description, price, stock_quantity, category, size, colors } = req.body;
     let image_url = '';
 
     if (req.file) {
@@ -47,8 +47,8 @@ router.post('/', protect, admin, upload.single('image'), async (req, res) => {
     const product_id = uuidv4();
     
     await db.execute(
-      'INSERT INTO Products (product_id, name, description, price, stock_quantity, category, size, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-      [product_id, name, description || null, price, stock_quantity, category || null, size || null, image_url]
+      'INSERT INTO Products (product_id, name, description, price, stock_quantity, category, size, colors, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [product_id, name, description || null, price, stock_quantity, category || null, size || null, colors || null, image_url]
     );
 
     res.status(201).json({ message: 'Product created successfully', product_id });
