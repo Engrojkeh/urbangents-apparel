@@ -11,19 +11,23 @@ dotenv.config();
 
 const app = express();
 
+// CORS must be first — before helmet or anything else
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', FRONTEND_URL);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
 // Security Middlewares
 app.use(helmet({
   crossOriginResourcePolicy: false,
 }));
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-
-// Explicitly handle OPTIONS preflight for all routes
-app.options('*', cors());
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 mins
