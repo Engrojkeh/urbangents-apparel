@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
 const { protect, admin } = require('../middleware/authMiddleware');
-const upload = require('../config/cloudinary');
+const multer = require('multer');
+const cloudinary = require('../config/cloudinary');
+const { v4: uuidv4 } = require('uuid');
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 // @route   GET /api/products
 // @desc    Get all products
@@ -25,7 +29,19 @@ router.post('/', protect, admin, upload.single('image'), async (req, res) => {
     let image_url = '';
 
     if (req.file) {
-      image_url = req.file.path;
+      const uploadPromise = new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          { folder: 'urbangents_products', resource_type: 'auto' },
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          }
+        );
+        stream.end(req.file.buffer);
+      });
+      
+      const result = await uploadPromise;
+      image_url = result.secure_url;
     }
 
     const product_id = uuidv4();

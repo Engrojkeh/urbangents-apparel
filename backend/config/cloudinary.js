@@ -1,6 +1,4 @@
 const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const multer = require('multer');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -11,14 +9,4 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'urbangents_products',
-    allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
-  },
-});
-
-const upload = multer({ storage: storage });
-
-module.exports = upload;
+module.exports = cloudinary;
