@@ -190,6 +190,7 @@ const Shop = () => {
       <footer className="bg-[#171210] w-full py-16 md:py-20 px-8 relative z-10 border-t border-[#a68a64]/20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 w-full max-w-7xl mx-auto">
           <div>
+            <h3 className="text-lg font-serif text-[#a68a64] mb-4 uppercase tracking-wider p-0 m-0">URBANGENTS APPARELS</h3>
             <p className="text-[#c9bda5]/40 font-body text-xs leading-relaxed max-w-[200px] m-0 p-0">
               Curating high-end streetwear for the discerning contemporary wardrobe.
             </p>

@@ -83,16 +83,35 @@ button {
   animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-/* Luxury Scroll Animations */
-.reveal {
-  opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+/* Luxury Scroll & Enter Animations - CSS only, no JS dependency */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Stagger nested elements slightly */
-.reveal > .stagger-delay-1, .stagger-delay-1 { animation-delay: 100ms; }
-.reveal > .stagger-delay-2, .stagger-delay-2 { animation-delay: 200ms; }
-.reveal > .stagger-delay-3, .stagger-delay-3 { animation-delay: 300ms; }
+/* Apply to sections - CSS handles timing automatically */
+.reveal {
+  animation: slideUpFade 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Staggered delays for grid children */
+.reveal:nth-child(1) { animation-delay: 0.05s; }
+.reveal:nth-child(2) { animation-delay: 0.15s; }
+.reveal:nth-child(3) { animation-delay: 0.25s; }
+.reveal:nth-child(4) { animation-delay: 0.35s; }
+.reveal:nth-child(5) { animation-delay: 0.45s; }
+.reveal:nth-child(6) { animation-delay: 0.55s; }
+
+/* Keep old stagger helpers */
+.reveal.active > .stagger-delay-1 { animation-delay: 100ms; }
+.reveal.active > .stagger-delay-2 { animation-delay: 200ms; }
+.reveal.active > .stagger-delay-3 { animation-delay: 300ms; }
 
 /* Staggered animation delays for grids */
 .product-card:nth-child(1) { animation-delay: 0.1s; }
