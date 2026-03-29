@@ -77,14 +77,14 @@ const Shop = () => {
   const getGridStyles = (index) => {
     const i = index % 7;
     switch (i) {
-      case 0: return { wrapper: "md:col-span-7 flex flex-col gap-6", aspect: "aspect-[4/5]" };
-      case 1: return { wrapper: "md:col-span-5 md:pt-40 flex flex-col gap-6", aspect: "aspect-[1/1]" };
-      case 2: return { wrapper: "md:col-span-4 flex flex-col gap-6", aspect: "aspect-[3/4]" };
-      case 3: return { wrapper: "md:col-span-4 md:-mt-20 flex flex-col gap-6", aspect: "aspect-[3/4]" };
-      case 4: return { wrapper: "md:col-span-4 flex flex-col gap-6", aspect: "aspect-[3/4]" };
-      case 5: return { wrapper: "md:col-span-8 flex flex-col gap-6", aspect: "aspect-[16/9]" };
-      case 6: return { wrapper: "md:col-span-4 flex flex-col gap-6", aspect: "aspect-[3/4]" };
-      default: return { wrapper: "md:col-span-4 flex flex-col gap-6", aspect: "aspect-[3/4]" };
+      case 0: return { wrapper: "md:col-span-7 flex flex-col gap-6 reveal", aspect: "aspect-[4/5]" };
+      case 1: return { wrapper: "md:col-span-5 md:pt-40 flex flex-col gap-6 reveal", aspect: "aspect-[1/1]" };
+      case 2: return { wrapper: "md:col-span-4 flex flex-col gap-6 reveal", aspect: "aspect-[3/4]" };
+      case 3: return { wrapper: "md:col-span-4 md:-mt-20 flex flex-col gap-6 reveal", aspect: "aspect-[3/4]" };
+      case 4: return { wrapper: "md:col-span-4 flex flex-col gap-6 reveal", aspect: "aspect-[3/4]" };
+      case 5: return { wrapper: "md:col-span-8 flex flex-col gap-6 reveal", aspect: "aspect-[16/9]" };
+      case 6: return { wrapper: "md:col-span-4 flex flex-col gap-6 reveal", aspect: "aspect-[3/4]" };
+      default: return { wrapper: "md:col-span-4 flex flex-col gap-6 reveal", aspect: "aspect-[3/4]" };
     }
   };
 
@@ -97,7 +97,7 @@ const Shop = () => {
       `}</style>
       
       <main className="pt-24 min-h-screen">
-        <header className="px-8 py-20 max-w-7xl mx-auto flex flex-col md:flex-row items-end justify-between gap-8">
+        <header className="px-8 py-20 max-w-7xl mx-auto flex flex-col md:flex-row items-end justify-between gap-8 reveal">
           <div className="max-w-2xl">
             <span className="text-[#e1c298] font-label uppercase tracking-[0.3em] text-[10px] mb-4 block">URBANGENTS APPARELS</span>
             <h1 className="text-6xl md:text-8xl font-serif text-[#ebe0db] leading-none mb-6">Refined<br/><span className="italic ml-12">Streetwear</span></h1>

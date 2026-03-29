@@ -49,7 +49,7 @@ const Home = () => {
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#171210] via-transparent to-transparent"></div>
         </div>
-        <div className="relative z-10 max-w-4xl py-24">
+        <div className="relative z-10 max-w-4xl py-24 reveal">
           <h1 className="text-6xl md:text-8xl font-serif-header text-[#f8e3b4] leading-[0.9] tracking-tighter mb-8" style={{ margin: 0, paddingBottom: 32 }}>
             THE NEW <br/> <span className="italic font-light opacity-80">STREET ARCHIVE</span>
           </h1>
@@ -72,14 +72,14 @@ const Home = () => {
       <section className="py-24 md:py-32 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-full md:h-[800px]">
           {/* Main Category */}
-          <div className="md:col-span-7 bg-surface-container-low rounded-lg overflow-hidden relative group h-[400px] md:h-auto">
+          <div className="md:col-span-7 bg-surface-container-low rounded-lg overflow-hidden relative group h-[400px] md:h-auto reveal">
             <img className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" alt="Close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASpjXsRPgewIInRhJiOm_t_VpLsa-gbXTeEg5QDLUveDZaDK38MbN8L5yQ2k9vxwVOgvIO8XlltDDB4R2dUGOlmGcKN_9ZdWxR5o2HEDuJJHWfyMM2kMmDpkQqmP6xaan3PKzMaHWB_-7fQxSNIKuzyc63SexUm4FAnv0oyRPVEGuUpezkHOVZemS9mWGosvXbZoaE-0s8VLBX7Du_W3sZjv6FpmKSKJq1k6kfflbJFMEvuBGtsAK7U7g7cWhPKmtj4C5nR1rtun0"/>
             <div className="absolute bottom-10 left-10">
               <h3 className="font-serif-header text-4xl text-[#f8e3b4] mb-2 uppercase italic">Essentials</h3>
               <Link className="text-[#a68a64] font-label text-[10px] uppercase tracking-[0.3em] hover:underline" to="/shop">View All Piece</Link>
             </div>
           </div>
-          <div className="md:col-span-5 grid grid-rows-2 gap-6 h-[600px] md:h-auto">
+          <div className="md:col-span-5 grid grid-rows-2 gap-6 h-[600px] md:h-auto reveal">
             <div className="bg-surface-container-high rounded-lg overflow-hidden relative group">
               <img className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" alt="Minimalist streetwear" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXNVWu2da7Hz-EdFlp1zVJumfNMaMZXD15Koye3yJMfvxqYFwKg4aX1LzKWRFjeV1iWg5a76U0t-GweEP2XBhh06_zoAHysEOZUfSK-9ZkdDsypzuPnqaGK8d5KM_5o2M9_IiK9Re_-DU4MjfbXlQlS4OyenAasLM14n4ammgS7ykrhjyvoINvMWcebkVswqG2RDbxZJrXUcxww5t0w6EMEL499-yxU0AF44Yd5Ojm6qvxs9SKQixjcKmmebekclx6QQQTToEHUUo"/>
               <div className="absolute top-8 right-8 text-right">
@@ -102,7 +102,7 @@ const Home = () => {
       {/* Featured Products */}
       <section id="shop" className="py-24 bg-surface-container-low/30">
         <div className="px-4 md:px-8 max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-4 reveal">
             <div>
               <span className="text-[#a68a64] font-label text-[10px] uppercase tracking-[0.4em]">Current Focus</span>
               <h2 className="font-serif-header text-4xl md:text-5xl text-[#f8e3b4] mt-4 p-0 m-0">Selected Pieces</h2>
@@ -115,7 +115,7 @@ const Home = () => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-16">
               {products.map((product, index) => (
-                <div key={product.product_id} className={`relative ${index === 1 ? 'md:-mt-12' : (index === 0 ? 'md:mt-12' : 'md:mt-8')}`}>
+                <div key={product.product_id} className={`relative reveal ${index === 1 ? 'md:-mt-12' : (index === 0 ? 'md:mt-12' : 'md:mt-8')}`}>
                   <div className="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg mb-6 group cursor-pointer relative" onClick={() => addToCart(product)}>
                     <img 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 

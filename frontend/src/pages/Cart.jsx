@@ -29,7 +29,7 @@ const Cart = () => {
       `}</style>
 
       <main className="pt-32 pb-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto min-h-screen">
-        <header className="mb-16">
+        <header className="mb-16 reveal">
           <h1 className="font-serif text-5xl md:text-7xl text-[#e1c298] tracking-tight mb-4">The Wardrobe</h1>
           <div className="flex items-center gap-4 text-sm font-sans tracking-[0.2em] text-[#d8c598] uppercase">
             <span>Your Curated Selection</span>
@@ -44,7 +44,7 @@ const Cart = () => {
               const cartKey = getCartKey(item);
               return (
                 <React.Fragment key={cartKey}>
-                  <div className="group relative flex flex-col md:flex-row gap-8 items-start md:items-center">
+                  <div className="group relative flex flex-col md:flex-row gap-8 items-start md:items-center reveal">
                     <div className="w-full md:w-48 aspect-[3/4] overflow-hidden bg-[#241f1b] rounded-lg">
                       <img 
                         src={item.image_url?.startsWith('/uploads') ? `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}${item.image_url}` : item.image_url} 
@@ -92,7 +92,7 @@ const Cart = () => {
             })}
           </div>
 
-          <aside className="lg:col-span-4">
+          <aside className="lg:col-span-4 reveal">
             <div className="bg-[#201b18] p-8 rounded-lg sticky top-32 border border-[#4e453c]/20">
               <h2 className="font-serif text-3xl text-[#ebe0db] mb-8">Summary</h2>
               <div className="space-y-6 mb-10">
@@ -132,7 +132,7 @@ const Cart = () => {
         </div>
 
         {/* Complete The Look Section (Static) */}
-        <section className="mt-32">
+        <section className="mt-32 reveal">
           <h2 className="font-serif text-4xl text-[#ebe0db] mb-12">Complete The Look</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="group cursor-pointer" onClick={() => navigate('/shop')}>
