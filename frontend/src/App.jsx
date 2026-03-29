@@ -12,52 +12,9 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import { About, Returns, SizeGuide } from './pages/InfoPages';
 
-// Global Scroll Observer Component
-const ScrollObserver = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to top on route change
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    const observeNewElements = () => {
-      document.querySelectorAll('.reveal:not(.is-observed)').forEach((el) => {
-        el.classList.add('is-observed');
-        observer.observe(el);
-      });
-    };
-
-    // Initial check
-    const timer = setTimeout(observeNewElements, 100);
-
-    // Watch the DOM for async data (like fetched products)
-    const mutationObserver = new MutationObserver(() => {
-      observeNewElements();
-    });
-    
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
-
-    return () => {
-      clearTimeout(timer);
-      observer.disconnect();
-      mutationObserver.disconnect();
-    };
-  }, [location.pathname]);
-
-  return null;
-};
-
 function App() {
   return (
     <Router>
-      <ScrollObserver />
       <CartProvider>
         <div className="app-container">
           <Navbar />

@@ -99,7 +99,6 @@ const Shop = () => {
       <main className="pt-24 min-h-screen">
         <header className="px-8 py-20 max-w-7xl mx-auto flex flex-col md:flex-row items-end justify-between gap-8 reveal">
           <div className="max-w-2xl">
-            <span className="text-[#e1c298] font-label uppercase tracking-[0.3em] text-[10px] mb-4 block">URBANGENTS APPARELS</span>
             <h1 className="text-6xl md:text-8xl font-serif text-[#ebe0db] leading-none mb-6">Refined<br/><span className="italic ml-12">Streetwear</span></h1>
             <p className="text-[#c9bda5] max-w-md text-lg leading-relaxed font-light">
               A dialogue between architectural precision and the raw energy of modern metropolis. Explore our curated selection of high-end essentials.
@@ -191,7 +190,6 @@ const Shop = () => {
       <footer className="bg-[#171210] w-full py-16 md:py-20 px-8 relative z-10 border-t border-[#a68a64]/20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 w-full max-w-7xl mx-auto">
           <div>
-            <h3 className="text-lg font-serif text-[#a68a64] mb-4 uppercase tracking-wider p-0 m-0">URBANGENTS APPARELS</h3>
             <p className="text-[#c9bda5]/40 font-body text-xs leading-relaxed max-w-[200px] m-0 p-0">
               Curating high-end streetwear for the discerning contemporary wardrobe.
             </p>

@@ -22,13 +22,13 @@ const Navbar = () => {
           alt="UG Logo" 
           className="h-8 md:h-10 w-auto object-contain mix-blend-screen" 
         />
-        <span className="text-[11px] md:text-[14px] font-serif text-[#e1c298] tracking-widest font-bold uppercase truncate max-w-[140px] md:max-w-none">
+        <span className="hidden sm:block text-[11px] md:text-[14px] font-serif text-[#e1c298] tracking-widest font-bold uppercase truncate max-w-[140px] md:max-w-none">
           Urbangents Apparels
         </span>
       </Link>
 
       {/* RIGHT: Navigation Icons */}
-      <div className="flex items-center gap-5 md:gap-8">
+      <div className="flex items-center gap-3 md:gap-8">
         <Link to="/" className="text-[#c9bda5] hover:text-[#e1c298] transition-colors flex items-center justify-center p-1" title="Home">
           <span className="material-symbols-outlined text-[20px] md:text-[22px] font-light">home</span>
         </Link>
