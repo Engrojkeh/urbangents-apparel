@@ -45,8 +45,32 @@ const Login = () => {
   };
 
   return (
-    <div className="container" style={{ display: 'flex', justifyContent: 'center', marginTop: '4rem', paddingBottom: '4rem' }}>
-      <div style={{ backgroundColor: 'var(--bg-secondary)', padding: '2.5rem', borderRadius: '12px', width: '100%', maxWidth: '450px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+    <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2rem', paddingBottom: '4rem' }}>
+      
+      <div style={{ width: '100%', maxWidth: '450px', marginBottom: '1rem' }}>
+        <button 
+          onClick={() => navigate('/')} 
+          style={{
+            background: 'transparent',
+            color: 'var(--accent-color)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.5rem 0',
+            fontSize: '0.9rem',
+            fontWeight: '600',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            transition: 'var(--transition)'
+          }}
+          onMouseOver={(e) => { e.currentTarget.style.color = 'var(--text-primary)'; e.currentTarget.style.transform = 'translateX(-5px)'; }}
+          onMouseOut={(e) => { e.currentTarget.style.color = 'var(--accent-color)'; e.currentTarget.style.transform = 'translateX(0)'; }}
+        >
+          &#8592; Back to Home
+        </button>
+      </div>
+
+      <div className="login-card" style={{ backgroundColor: 'var(--bg-secondary)', padding: '2.5rem', borderRadius: '12px', width: '100%', maxWidth: '450px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
         <h2 className="text-center" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>
           {isLogin ? 'Welcome Back' : 'Create an Account'}
         </h2>
