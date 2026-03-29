@@ -60,11 +60,12 @@ const Login = () => {
         input[type="password"]::-ms-reveal, input[type="password"]::-ms-clear { display: none; }
       `}</style>
       
-      <nav className="absolute top-0 w-full z-50 flex justify-between items-center px-8 py-8 transition-all duration-500">
-        <Link to="/" className="hover:opacity-80 transition-opacity">
-            <img src={ugLogo} alt="Urbangents Apparels" className="h-10 md:h-12 w-auto object-contain" />
+      <nav className="absolute top-0 w-full z-50 flex justify-between items-center px-6 md:px-8 py-6 md:py-8 transition-all duration-500">
+        <Link to="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity">
+            <img src={ugLogo} alt="UG Logo" className="h-7 md:h-10 w-auto object-contain mix-blend-screen" />
+            <span className="text-[10px] md:text-lg font-serif text-[#e1c298] tracking-widest font-bold uppercase">URBANGENTS APPARELS</span>
         </Link>
-        <div className="flex items-center space-x-8">
+        <div className="flex items-center space-x-4 md:space-x-8">
           <Link to="/" className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#d1c5b8] hover:text-[#e1c298] transition-colors">
             <span className="material-symbols-outlined text-sm">arrow_back</span>
             <span className="hidden md:inline">Return To Archives</span>
