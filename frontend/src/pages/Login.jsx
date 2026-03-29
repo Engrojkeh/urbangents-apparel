@@ -60,8 +60,8 @@ const Login = () => {
       `}</style>
       
       <nav className="absolute top-0 w-full z-50 flex justify-between items-center px-8 py-8 transition-all duration-500">
-        <Link to="/" className="text-xl md:text-2xl font-serif text-[#e1c298] tracking-tighter font-bold uppercase hover:opacity-80 transition-opacity">
-            URBANGENTS APPARELS
+        <Link to="/" className="hover:opacity-80 transition-opacity">
+            <img src="/ug-logo.jpg" alt="Urbangents" className="h-10 md:h-12 w-auto object-contain" />
         </Link>
         <div className="flex items-center space-x-8">
           <Link to="/" className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#d1c5b8] hover:text-[#e1c298] transition-colors">
@@ -101,10 +101,9 @@ const Login = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-10">
               {!isLogin && (
-                <div>
-                  <label htmlFor="name" className="block text-[#d1c5b8] text-[10px] uppercase tracking-widest mb-2">Full Name</label>
+                <div className="relative group">
                   <input 
                     id="name" 
                     name="name" 
@@ -112,13 +111,16 @@ const Login = () => {
                     required={!isLogin} 
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-[#241f1b] border border-[#4e453c]/50 rounded-lg py-3 px-4 focus:outline-none focus:border-[#e1c298] text-[#ebe0db] transition-colors"
+                    className="floating-input w-full bg-transparent border-0 border-b border-[#4e453c]/20 py-3 px-0 focus:ring-0 focus:border-[#e1c298] text-[#ebe0db] transition-colors duration-300 placeholder-transparent outline-none" 
+                    placeholder=" " 
                   />
+                  <label htmlFor="name" className="absolute left-0 top-3 text-[#d1c5b8] uppercase text-[10px] tracking-widest transition-all duration-300 pointer-events-none group-focus-within:text-[#e1c298]">
+                    Full Name
+                  </label>
                 </div>
               )}
 
-              <div>
-                <label htmlFor="email" className="block text-[#d1c5b8] text-[10px] uppercase tracking-widest mb-2">Email Address</label>
+              <div className="relative group">
                 <input 
                   id="email" 
                   name="email" 
@@ -126,12 +128,15 @@ const Login = () => {
                   required 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-[#241f1b] border border-[#4e453c]/50 rounded-lg py-3 px-4 focus:outline-none focus:border-[#e1c298] text-[#ebe0db] transition-colors"
+                  className="floating-input w-full bg-transparent border-0 border-b border-[#4e453c]/20 py-3 px-0 focus:ring-0 focus:border-[#e1c298] text-[#ebe0db] transition-colors duration-300 placeholder-transparent outline-none" 
+                  placeholder=" " 
                 />
+                <label htmlFor="email" className="absolute left-0 top-3 text-[#d1c5b8] uppercase text-[10px] tracking-widest transition-all duration-300 pointer-events-none group-focus-within:text-[#e1c298]">
+                  Email Address
+                </label>
               </div>
 
-              <div>
-                <label htmlFor="password" className="block text-[#d1c5b8] text-[10px] uppercase tracking-widest mb-2">Password</label>
+              <div className="relative group">
                 <input 
                   id="password" 
                   name="password" 
@@ -139,32 +144,36 @@ const Login = () => {
                   required 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-[#241f1b] border border-[#4e453c]/50 rounded-lg py-3 px-4 focus:outline-none focus:border-[#e1c298] text-[#ebe0db] transition-colors"
+                  className="floating-input w-full bg-transparent border-0 border-b border-[#4e453c]/20 py-3 px-0 focus:ring-0 focus:border-[#e1c298] text-[#ebe0db] transition-colors duration-300 placeholder-transparent outline-none pr-10" 
+                  placeholder=" " 
                 />
+                <label htmlFor="password" className="absolute left-0 top-3 text-[#d1c5b8] uppercase text-[10px] tracking-widest transition-all duration-300 pointer-events-none group-focus-within:text-[#e1c298]">
+                  Password
+                </label>
               </div>
 
               <div className="flex justify-end pt-1">
                 {isLogin && (
-                  <button type="button" className="text-[10px] uppercase tracking-wider text-[#a88c66] hover:text-[#e1c298] transition-colors underline underline-offset-4 decoration-[#4e453c]/50">
+                  <button type="button" className="bg-transparent border-none p-0 m-0 text-[10px] uppercase tracking-wider text-[#a88c66] hover:text-[#e1c298] transition-colors underline underline-offset-4 decoration-[#4e453c]/50 leading-none">
                     Forgot Entry?
                   </button>
                 )}
               </div>
 
               <div className="pt-2">
-                <button type="submit" disabled={loading} className="w-full metallic-gradient text-[#402d0f] py-4 rounded-full font-sans font-bold text-[11px] uppercase tracking-[0.2em] shadow-lg shadow-black/40 hover:scale-[1.02] active:scale-95 transition-all duration-300 focus:outline-none disabled:opacity-70 disabled:hover:scale-100">
+                <button type="submit" disabled={loading} className="w-full metallic-gradient text-[#402d0f] py-4 rounded-full font-sans font-bold text-[11px] uppercase tracking-[0.2em] shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:-translate-y-1 hover:shadow-[0_25px_50px_rgba(0,0,0,0.5)] active:scale-95 transition-all duration-300 focus:outline-none disabled:opacity-70 disabled:hover:scale-100 disabled:hover:translate-y-0">
                   {loading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
                 </button>
               </div>
             </form>
 
             <div className="mt-10 md:mt-12 text-center border-t border-[#4e453c]/20 pt-6">
-              <p className="text-[10px] md:text-[11px] text-[#d1c5b8] tracking-wide uppercase">
+              <p className="text-[10px] md:text-[11px] text-[#d1c5b8] tracking-wide uppercase flex items-center justify-center gap-2">
                 {isLogin ? "New to the Maison?" : "Already a Member?"} 
                 <button 
                   type="button" 
                   onClick={() => { setIsLogin(!isLogin); setError(''); }}
-                  className="text-[#e1c298] hover:underline underline-offset-4 font-bold ml-2 transition-colors"
+                  className="bg-transparent border-none p-0 m-0 text-[#e1c298] hover:underline underline-offset-4 font-bold transition-colors leading-none"
                 >
                   {isLogin ? 'Request an Account' : 'Access your Account'}
                 </button>

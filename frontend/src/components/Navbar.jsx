@@ -14,7 +14,9 @@ const Navbar = () => {
   return (
     <nav className="navbar" style={{ background: 'transparent', borderBottom: 'none' }}>
       <div className="nav-brand">
-        <Link to="/">URBANGENTS APPARELS</Link>
+        <Link to="/">
+          <img src="/ug-logo.jpg" alt="Urbangents" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} />
+        </Link>
       </div>
       <div className="nav-links">
         <Link to="/">Home</Link>
