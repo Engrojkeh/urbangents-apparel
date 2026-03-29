@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import ugLogo from '../assets/ug-logo.jpg';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -61,7 +62,7 @@ const Login = () => {
       
       <nav className="absolute top-0 w-full z-50 flex justify-between items-center px-8 py-8 transition-all duration-500">
         <Link to="/" className="hover:opacity-80 transition-opacity">
-            <img src="/ug-logo.jpg" alt="Urbangents" className="h-10 md:h-12 w-auto object-contain" />
+            <img src={ugLogo} alt="Urbangents Apparels" className="h-10 md:h-12 w-auto object-contain" />
         </Link>
         <div className="flex items-center space-x-8">
           <Link to="/" className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#d1c5b8] hover:text-[#e1c298] transition-colors">
@@ -91,7 +92,7 @@ const Login = () => {
               </span>
               <h1 className="text-4xl md:text-5xl font-serif text-[#ebe0db] leading-tight font-bold tracking-tight">
                 {isLogin ? 'Urbangents ' : 'Exclusive '}
-                <br/><span className="text-[#d8c598] italic">{isLogin ? 'Access' : 'Membership'}</span>
+                <br/><span className="text-[#d8c598] italic">{isLogin ? 'Apparels' : 'Membership'}</span>
               </h1>
             </div>
 
@@ -185,7 +186,7 @@ const Login = () => {
         <div className="hidden xl:block absolute right-24 top-1/2 -translate-y-1/2 w-64 space-y-12">
           <div className="space-y-4">
             <span className="block w-8 h-[1px] bg-[#e1c298]"></span>
-            <h3 className="font-serif text-2xl text-[#ebe0db]">Curated by <br/>Urbangents</h3>
+            <h3 className="font-serif text-2xl text-[#ebe0db]">Curated by <br/>Urbangents Apparels</h3>
             <p className="text-xs leading-relaxed text-[#d1c5b8] italic">
                 "Crafting the future of street luxury through intentional design and architectural silhouettes."
             </p>

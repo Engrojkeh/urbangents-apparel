@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import ugLogo from '../assets/ug-logo.jpg';
 
 const Navbar = () => {
   const { cartCount } = useCart();
@@ -15,7 +16,7 @@ const Navbar = () => {
     <nav className="navbar" style={{ background: 'transparent', borderBottom: 'none' }}>
       <div className="nav-brand">
         <Link to="/">
-          <img src="/ug-logo.jpg" alt="Urbangents" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} />
+          <img src={ugLogo} alt="Urbangents Apparels" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} />
         </Link>
       </div>
       <div className="nav-links">
