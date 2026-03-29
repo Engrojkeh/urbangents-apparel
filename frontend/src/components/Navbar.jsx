@@ -13,19 +13,38 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar" style={{ background: 'transparent', borderBottom: 'none' }}>
-      <div className="nav-brand">
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
-          <img src={ugLogo} alt="UG Logo" style={{ height: '32px', width: 'auto', objectFit: 'contain', mixBlendMode: 'screen' }} />
-          <span style={{ fontSize: '1rem', fontFamily: "'Noto Serif', serif", color: '#e1c298', letterSpacing: '0.1em', fontWeight: 'bold' }}>URBANGENTS APPARELS</span>
+    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-10 py-4 transition-all duration-500 bg-transparent border-none">
+      
+      {/* LEFT: Logo & Brand Name */}
+      <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <img 
+          src={ugLogo} 
+          alt="UG Logo" 
+          className="h-8 md:h-10 w-auto object-contain mix-blend-screen" 
+        />
+        <span className="text-[11px] md:text-[14px] font-serif text-[#e1c298] tracking-widest font-bold uppercase truncate max-w-[140px] md:max-w-none">
+          Urbangents Apparels
+        </span>
+      </Link>
+
+      {/* RIGHT: Navigation Icons */}
+      <div className="flex items-center gap-5 md:gap-8">
+        <Link to="/" className="text-[#c9bda5] hover:text-[#e1c298] transition-colors flex items-center justify-center p-1" title="Home">
+          <span className="material-symbols-outlined text-[20px] md:text-[22px] font-light">home</span>
         </Link>
-      </div>
-      <div className="nav-links">
-        <Link to="/">Home</Link>
-        <Link to="/shop">Shop</Link>
-        <Link to="/cart">Cart {cartCount > 0 && <span className="badge-sold-out">{cartCount}</span>}</Link>
-        <Link to="/profile" title="My Account" style={{ display: 'flex', alignItems: 'center' }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <Link to="/shop" className="text-[#c9bda5] hover:text-[#e1c298] transition-colors flex items-center justify-center p-1" title="Shop Archives">
+          <span className="material-symbols-outlined text-[20px] md:text-[22px] font-light">grid_view</span>
+        </Link>
+        <Link to="/cart" className="relative text-[#c9bda5] hover:text-[#e1c298] transition-colors flex items-center justify-center p-1" title="Cart">
+          <span className="material-symbols-outlined text-[20px] md:text-[22px] font-light">local_mall</span>
+          {cartCount > 0 && (
+            <span className="absolute -top-1 -right-1 bg-[#e1c298] text-[#171210] text-[8px] font-bold px-1.5 py-0.5 rounded-full flex items-center justify-center">
+              {cartCount}
+            </span>
+          )}
+        </Link>
+        <Link to="/profile" className="text-[#c9bda5] hover:text-[#e1c298] transition-colors flex items-center justify-center p-1" title="Account">
+          <span className="material-symbols-outlined text-[20px] md:text-[22px] font-light">person</span>
         </Link>
       </div>
     </nav>
