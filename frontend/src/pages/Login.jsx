@@ -90,7 +90,7 @@ const Login = () => {
                 {isLogin ? 'Welcome Back' : 'Join The Archives'}
               </span>
               <h1 className="text-4xl md:text-5xl font-serif text-[#ebe0db] leading-tight font-bold tracking-tight">
-                {isLogin ? 'Atelier ' : 'Exclusive '}
+                {isLogin ? 'Urbangents ' : 'Exclusive '}
                 <br/><span className="text-[#d8c598] italic">{isLogin ? 'Access' : 'Membership'}</span>
               </h1>
             </div>
@@ -101,9 +101,10 @@ const Login = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-10">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {!isLogin && (
-                <div className="relative">
+                <div>
+                  <label htmlFor="name" className="block text-[#d1c5b8] text-[10px] uppercase tracking-widest mb-2">Full Name</label>
                   <input 
                     id="name" 
                     name="name" 
@@ -111,16 +112,13 @@ const Login = () => {
                     required={!isLogin} 
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="floating-input w-full bg-transparent border-0 border-b border-[#4e453c]/50 py-3 px-0 focus:ring-0 focus:border-[#e1c298] text-[#ebe0db] transition-all duration-300 placeholder-transparent outline-none" 
-                    placeholder=" " 
+                    className="w-full bg-[#241f1b] border border-[#4e453c]/50 rounded-lg py-3 px-4 focus:outline-none focus:border-[#e1c298] text-[#ebe0db] transition-colors"
                   />
-                  <label htmlFor="name" className="absolute left-0 top-3 text-[#d1c5b8]/60 uppercase text-[10px] tracking-widest transition-all duration-300 pointer-events-none">
-                    Full Name
-                  </label>
                 </div>
               )}
 
-              <div className="relative">
+              <div>
+                <label htmlFor="email" className="block text-[#d1c5b8] text-[10px] uppercase tracking-widest mb-2">Email Address</label>
                 <input 
                   id="email" 
                   name="email" 
@@ -128,15 +126,12 @@ const Login = () => {
                   required 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="floating-input w-full bg-transparent border-0 border-b border-[#4e453c]/50 py-3 px-0 focus:ring-0 focus:border-[#e1c298] text-[#ebe0db] transition-all duration-300 placeholder-transparent outline-none" 
-                  placeholder=" " 
+                  className="w-full bg-[#241f1b] border border-[#4e453c]/50 rounded-lg py-3 px-4 focus:outline-none focus:border-[#e1c298] text-[#ebe0db] transition-colors"
                 />
-                <label htmlFor="email" className="absolute left-0 top-3 text-[#d1c5b8]/60 uppercase text-[10px] tracking-widest transition-all duration-300 pointer-events-none">
-                  Email Address
-                </label>
               </div>
 
-              <div className="relative">
+              <div>
+                <label htmlFor="password" className="block text-[#d1c5b8] text-[10px] uppercase tracking-widest mb-2">Password</label>
                 <input 
                   id="password" 
                   name="password" 
@@ -144,15 +139,11 @@ const Login = () => {
                   required 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="floating-input w-full bg-transparent border-0 border-b border-[#4e453c]/50 py-3 px-0 focus:ring-0 focus:border-[#e1c298] text-[#ebe0db] transition-all duration-300 placeholder-transparent outline-none pr-10" 
-                  placeholder=" " 
+                  className="w-full bg-[#241f1b] border border-[#4e453c]/50 rounded-lg py-3 px-4 focus:outline-none focus:border-[#e1c298] text-[#ebe0db] transition-colors"
                 />
-                <label htmlFor="password" className="absolute left-0 top-3 text-[#d1c5b8]/60 uppercase text-[10px] tracking-widest transition-all duration-300 pointer-events-none">
-                  Password
-                </label>
               </div>
 
-              <div className="flex justify-end pt-2">
+              <div className="flex justify-end pt-1">
                 {isLogin && (
                   <button type="button" className="text-[10px] uppercase tracking-wider text-[#a88c66] hover:text-[#e1c298] transition-colors underline underline-offset-4 decoration-[#4e453c]/50">
                     Forgot Entry?
@@ -160,16 +151,16 @@ const Login = () => {
                 )}
               </div>
 
-              <div className="space-y-6 pt-4">
+              <div className="pt-2">
                 <button type="submit" disabled={loading} className="w-full metallic-gradient text-[#402d0f] py-4 rounded-full font-sans font-bold text-[11px] uppercase tracking-[0.2em] shadow-lg shadow-black/40 hover:scale-[1.02] active:scale-95 transition-all duration-300 focus:outline-none disabled:opacity-70 disabled:hover:scale-100">
-                  {loading ? 'Processing...' : (isLogin ? 'Sign In to Atelier' : 'Create Atelier Account')}
+                  {loading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
                 </button>
               </div>
             </form>
 
-            <div className="mt-12 md:mt-16 text-center border-t border-[#4e453c]/20 pt-8">
+            <div className="mt-10 md:mt-12 text-center border-t border-[#4e453c]/20 pt-6">
               <p className="text-[10px] md:text-[11px] text-[#d1c5b8] tracking-wide uppercase">
-                {isLogin ? "New to the Maison?" : "Already an Atelier Member?"} 
+                {isLogin ? "New to the Maison?" : "Already a Member?"} 
                 <button 
                   type="button" 
                   onClick={() => { setIsLogin(!isLogin); setError(''); }}
