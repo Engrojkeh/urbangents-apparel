@@ -27,13 +27,27 @@ const ScrollObserver = () => {
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    const timer = setTimeout(() => {
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    }, 100);
+    const observeNewElements = () => {
+      document.querySelectorAll('.reveal:not(.is-observed)').forEach((el) => {
+        el.classList.add('is-observed');
+        observer.observe(el);
+      });
+    };
+
+    // Initial check
+    const timer = setTimeout(observeNewElements, 100);
+
+    // Watch the DOM for async data (like fetched products)
+    const mutationObserver = new MutationObserver(() => {
+      observeNewElements();
+    });
+    
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       clearTimeout(timer);
       observer.disconnect();
+      mutationObserver.disconnect();
     };
   }, [location.pathname]);
 
