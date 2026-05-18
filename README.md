@@ -23,7 +23,9 @@
 |---|---|---|
 | <img width="1344" height="655" alt="Screenshot 2026-05-18 011024" src="https://github.com/user-attachments/assets/8e99929e-626f-46e6-a55f-051d8148306b" />
 
- | ![Product](screenshots/product.png) | ![Admin](screenshots/admin.png) |
+ | <img width="1336" height="650" alt="image" src="https://github.com/user-attachments/assets/9cf40cd9-799a-448b-8254-5bdbd94f9a52" />
+ | ![Admin](screenshots/admin.png) |
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1e3a9fee-ad07-4105-9ee0-b798b7891e2e" />
 
 
 
